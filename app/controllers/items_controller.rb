@@ -5,20 +5,22 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
-    render json: @items
+
+    render json: @items.to_json(include: :reviews)
   end
+
 
   # GET /items/1
   def show
-    render json: @item
+    render json: @item.to_json(include: :reviews)
   end
 
   # POST /items
   def create
     @item = Item.new(item_params)
-
+    @item.brand_id = params[:brand_id]
     if @item.save
-      render json: @item, status: :created, location: @item
+      render json: @item, status: :created
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -48,4 +50,4 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:title, :image, :price, :body, :gender, :sprice, :brand, :category1, :category2, :sales, :year, :month)
     end
-end
+  end

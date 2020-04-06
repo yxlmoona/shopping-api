@@ -5,12 +5,12 @@ class BrandsController < ApplicationController
   def index
     @brands = Brand.all
 
-    render json: @brands
+    render json: @brands.to_json(include: :items)
   end
 
   # GET /brands/1
   def show
-    render json: @brand
+    render json: @brand.to_json(include: :items)
   end
 
   # POST /brands
