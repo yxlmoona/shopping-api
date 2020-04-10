@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_154816) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "brand_id"
-    t.integer "love"
+    t.integer "loves"
   end
 
   create_table "reviews", force: :cascade do |t|
