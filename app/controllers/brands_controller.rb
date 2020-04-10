@@ -5,12 +5,20 @@ class BrandsController < ApplicationController
   def index
     @brands = Brand.all
 
-    render json: @brands.to_json(include: :items)
+    render json: @brands.to_json(:include => {
+      :items => {
+        :include => :reviews
+      }
+      })
   end
 
   # GET /brands/1
   def show
-    render json: @brand.to_json(include: :items)
+    render json: @brand.to_json(:include => {
+      :items => {
+        :include => :reviews
+      }
+      })
   end
 
   # POST /brands
@@ -47,5 +55,6 @@ class BrandsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def brand_params
       params.require(:brand).permit(:name, :description, :featured)
+
     end
 end
