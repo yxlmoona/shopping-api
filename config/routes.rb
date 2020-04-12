@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :reviews
-  resources :users
+  resources :users do
+    collection do
+      post '/login', to: 'users#login'
+    end
+  end
   resources :items
   resources :brands do
     resources :items do

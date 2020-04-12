@@ -5,4 +5,5 @@ class User < ApplicationRecord
  # else
  #     DB = PG.connect(host: "localhost", port: 5432, dbname: 'simplerails')
  # end
+ has_secure_password
 end
